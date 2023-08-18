@@ -7,5 +7,5 @@ vim.opt.wrap = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.updatetime = 50
-
+vim.opt.smartindent = true
 vim.opt.colorcolumn = "120"
