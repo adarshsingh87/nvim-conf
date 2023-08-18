@@ -10,3 +10,4 @@ vim.opt.updatetime = 50
 vim.opt.smartindent = true
 vim.opt.colorcolumn = "120"
 vim.opt.wrap = true
+vim.opt.signcolumn = "yes"
