@@ -70,7 +70,7 @@ require("prettier").setup({
   },
   ["null-ls"] = {
     condition = function()
-      return prettier.config_exists({
+      return require("prettier").config_exists({
         check_package_json = true,
       })
     end,
