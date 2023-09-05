@@ -29,3 +29,4 @@ local on_attach = function(_, bufnr)
   nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
   nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 end
+vim.keymap.set("n", "<Enter>", "i<Enter><Esc>k$", { desc = "New line without leaving normal mode" })
