@@ -2,6 +2,8 @@
 require("config.lazy")
 vim.cmd("set scrolloff=10")
 vim.cmd("set guicursor=")
+vim.cmd("set ve+=onemore")
+vim.cmd("set ww+=<,>,[,]")
 
 function ColorMyPencils(color)
   color = color or "shades_of_purple"
