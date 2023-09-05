@@ -15,6 +15,7 @@ ColorMyPencils()
 vim.cmd("set foldenable")
 vim.cmd("set foldmethod=indent")
 vim.cmd("set foldlevel=99")
+vim.cmd("set textwidth=80")
 require("gitsigns").setup({
   current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
@@ -46,5 +47,54 @@ require("indent_blankline").setup({
     "IndentBlanklineIndent4",
     "IndentBlanklineIndent5",
     "IndentBlanklineIndent6",
+  },
+})
+
+require("prettier").setup({
+  bin = "prettier",
+  filetypes = {
+    "css",
+    "graphql",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "less",
+    "markdown",
+    "scss",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+  },
+  ["null-ls"] = {
+    condition = function()
+      return prettier.config_exists({
+        check_package_json = true,
+      })
+    end,
+    runtime_condition = function(params)
+      return true
+    end,
+    timeout = 5000,
+  },
+  cli_options = {
+    arrow_parens = "always",
+    bracket_spacing = true,
+    bracket_same_line = false,
+    embedded_language_formatting = "auto",
+    end_of_line = "lf",
+    html_whitespace_sensitivity = "css",
+    jsx_bracket_same_line = false,
+    jsx_single_quote = false,
+    print_width = 130,
+    prose_wrap = "preserve",
+    quote_props = "as-needed",
+    semi = false,
+    single_attribute_per_line = false,
+    single_quote = false,
+    tab_width = 2,
+    trailing_comma = "es5",
+    use_tabs = false,
+    vue_indent_script_and_style = false,
   },
 })
