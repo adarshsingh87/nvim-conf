@@ -18,6 +18,7 @@ vim.cmd("set foldenable")
 vim.cmd("set foldmethod=indent")
 vim.cmd("set foldlevel=99")
 vim.cmd("set textwidth=130")
+vim.cmd("set nrformats+=alpha")
 require("gitsigns").setup({
   current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
