@@ -123,6 +123,8 @@ vim.opt.undofile = true
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+-- smart intdent to proprerly indent.
+vim.opt.smartindent = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
@@ -258,7 +260,14 @@ vim.keymap.set('n', '<Enter>', 'i<Enter><Esc>k$', { desc = 'New line without lea
 -- end)
 
 -- require("ibl").setup({ indent = { highlight = highlight } })
-
+-- move lines up/down
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+-- paste without register override
+vim.keymap.set('x', '<leader>p', [["_dP]], {desc: "[P]aste without register override"})
+-- copy to clipboard
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 require('lazy').setup({
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
