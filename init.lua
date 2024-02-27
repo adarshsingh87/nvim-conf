@@ -264,7 +264,7 @@ vim.keymap.set('n', '<Enter>', 'i<Enter><Esc>k$', { desc = 'New line without lea
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- paste without register override
-vim.keymap.set('x', '<leader>p', [["_dP]], {desc: "[P]aste without register override"})
+vim.keymap.set('x', '<leader>p', [["_dP]], {desc= "[P]aste without register override"})
 -- copy to clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
