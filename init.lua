@@ -218,6 +218,43 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+-- bg transparent
+function ColorMyPencils(color)
+  color = color or "shades_of_purple"
+  vim.cmd.colorscheme(color)
+
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+end
+
+-- enable folding
+vim.cmd("set foldenable")
+vim.cmd("set foldmethod=indent")
+vim.cmd("set foldlevel=99")
+
+vim.opt.termguicolors = true
+-- local hooks = require("ibl.hooks")
+
+-- local highlight = {
+--   "IndentBlanklineIndent1",
+--   "IndentBlanklineIndent2",
+--   "IndentBlanklineIndent3",
+--   "IndentBlanklineIndent4",
+--   "IndentBlanklineIndent5",
+--   "IndentBlanklineIndent6",
+-- }
+
+-- hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+--   vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { fg = "#E06C75" })
+--   vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { fg = "#E5C07B" })
+--   vim.api.nvim_set_hl(0, "IndentBlanklineIndent3", { fg = "#61AFEF" })
+--   vim.api.nvim_set_hl(0, "IndentBlanklineIndent4", { fg = "#D19A66" })
+--   vim.api.nvim_set_hl(0, "IndentBlanklineIndent5", { fg = "#98C379" })
+--   vim.api.nvim_set_hl(0, "IndentBlanklineIndent6", { fg = "#C678DD" })
+-- end)
+
+-- require("ibl").setup({ indent = { highlight = highlight } })
+
 require('lazy').setup({
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
@@ -723,15 +760,15 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-    'folke/tokyonight.nvim',
+    'Rigellute/shades-of-purple.vim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    priority = 10000, -- make sure to load this before all the other start plugins
     config = function()
       -- Load the colorscheme here
-      vim.cmd.colorscheme 'tokyonight-night'
-
+      vim.cmd.colorscheme 'shades_of_purple'
+      ColorMyPencils()
       -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
     end,
   },
 
