@@ -1,3 +1,5 @@
+  require('kickstart.plugins.debug')
+  require('custom.plugins')
 --[[
 
 =====================================================================
@@ -239,35 +241,15 @@ vim.cmd 'set foldlevel=99'
 
 vim.opt.termguicolors = true
 vim.keymap.set('n', '<Enter>', 'i<Enter><Esc>k$', { desc = 'New line without leaving normal mode' })
--- local hooks = require("ibl.hooks")
 
--- local highlight = {
---   "IndentBlanklineIndent1",
---   "IndentBlanklineIndent2",
---   "IndentBlanklineIndent3",
---   "IndentBlanklineIndent4",
---   "IndentBlanklineIndent5",
---   "IndentBlanklineIndent6",
--- }
-
--- hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
---   vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { fg = "#E06C75" })
---   vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { fg = "#E5C07B" })
---   vim.api.nvim_set_hl(0, "IndentBlanklineIndent3", { fg = "#61AFEF" })
---   vim.api.nvim_set_hl(0, "IndentBlanklineIndent4", { fg = "#D19A66" })
---   vim.api.nvim_set_hl(0, "IndentBlanklineIndent5", { fg = "#98C379" })
---   vim.api.nvim_set_hl(0, "IndentBlanklineIndent6", { fg = "#C678DD" })
--- end)
-
--- require("ibl").setup({ indent = { highlight = highlight } })
 -- move lines up/down
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- paste without register override
-vim.keymap.set('x', '<leader>p', [["_dP]], {desc= "[P]aste without register override"})
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = '[P]aste without register override' })
 -- copy to clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
+vim.keymap.set('n', '<leader>Y', [["+Y]])
 require('lazy').setup({
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
@@ -741,7 +723,7 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<cr>'] = cmp.mapping.confirm { select = true },
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -791,6 +773,36 @@ require('lazy').setup({
       -- You can configure highlights by doing something like
       -- vim.cmd.hi 'Comment gui=none'
     end,
+  },
+
+  { -- Add indentation guides even on blank lines
+    'lukas-reineke/indent-blankline.nvim',
+    -- Enable `lukas-reineke/indent-blankline.nvim`
+    -- See `:help ibl`
+    main = 'ibl',
+    config=function()
+      local hooks = require("ibl.hooks")
+
+local highlight = {
+  "IndentBlanklineIndent1",
+  "IndentBlanklineIndent2",
+  "IndentBlanklineIndent3",
+  "IndentBlanklineIndent4",
+  "IndentBlanklineIndent5",
+  "IndentBlanklineIndent6",
+}
+
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+  vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { fg = "#E06C75" })
+  vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { fg = "#E5C07B" })
+  vim.api.nvim_set_hl(0, "IndentBlanklineIndent3", { fg = "#61AFEF" })
+  vim.api.nvim_set_hl(0, "IndentBlanklineIndent4", { fg = "#D19A66" })
+  vim.api.nvim_set_hl(0, "IndentBlanklineIndent5", { fg = "#98C379" })
+  vim.api.nvim_set_hl(0, "IndentBlanklineIndent6", { fg = "#C678DD" })
+end)
+
+require("ibl").setup({ indent = { highlight = highlight } })
+end
   },
 
   -- Highlight todo, notes, etc in comments
@@ -857,15 +869,11 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
-  -- { import = 'custom.plugins' },
 }, {})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
