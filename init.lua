@@ -1,5 +1,4 @@
-  require('kickstart.plugins.debug')
-  require('custom.plugins')
+require 'kickstart.plugins.debug'
 --[[
 
 =====================================================================
@@ -249,7 +248,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = '[P]aste without register override' })
 -- copy to clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
-vim.keymap.set('n', '<leader>Y', [["+Y]])
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank to clipboard' })
 require('lazy').setup({
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
@@ -780,29 +779,29 @@ require('lazy').setup({
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-    config=function()
-      local hooks = require("ibl.hooks")
+    config = function()
+      local hooks = require 'ibl.hooks'
 
-local highlight = {
-  "IndentBlanklineIndent1",
-  "IndentBlanklineIndent2",
-  "IndentBlanklineIndent3",
-  "IndentBlanklineIndent4",
-  "IndentBlanklineIndent5",
-  "IndentBlanklineIndent6",
-}
+      local highlight = {
+        'IndentBlanklineIndent1',
+        'IndentBlanklineIndent2',
+        'IndentBlanklineIndent3',
+        'IndentBlanklineIndent4',
+        'IndentBlanklineIndent5',
+        'IndentBlanklineIndent6',
+      }
 
-hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-  vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { fg = "#E06C75" })
-  vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { fg = "#E5C07B" })
-  vim.api.nvim_set_hl(0, "IndentBlanklineIndent3", { fg = "#61AFEF" })
-  vim.api.nvim_set_hl(0, "IndentBlanklineIndent4", { fg = "#D19A66" })
-  vim.api.nvim_set_hl(0, "IndentBlanklineIndent5", { fg = "#98C379" })
-  vim.api.nvim_set_hl(0, "IndentBlanklineIndent6", { fg = "#C678DD" })
-end)
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, 'IndentBlanklineIndent1', { fg = '#E06C75' })
+        vim.api.nvim_set_hl(0, 'IndentBlanklineIndent2', { fg = '#E5C07B' })
+        vim.api.nvim_set_hl(0, 'IndentBlanklineIndent3', { fg = '#61AFEF' })
+        vim.api.nvim_set_hl(0, 'IndentBlanklineIndent4', { fg = '#D19A66' })
+        vim.api.nvim_set_hl(0, 'IndentBlanklineIndent5', { fg = '#98C379' })
+        vim.api.nvim_set_hl(0, 'IndentBlanklineIndent6', { fg = '#C678DD' })
+      end)
 
-require("ibl").setup({ indent = { highlight = highlight } })
-end
+      require('ibl').setup { indent = { highlight = highlight } }
+    end,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -874,6 +873,7 @@ end
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
+  { import = 'custom.plugins' },
 }, {})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
