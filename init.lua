@@ -106,7 +106,12 @@ vim.cmd 'set ve+=onemore'
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
-
+vim.opt.incsearch = true
+vim.opt.updatetime = 50
+vim.opt.smartindent = true
+vim.opt.colorcolumn = '120'
+-- relativenumber
+vim.cmd 'set relativenumber'
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 
