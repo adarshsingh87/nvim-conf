@@ -254,6 +254,7 @@ vim.keymap.set('x', '<leader>p', [["_dP]], { desc = '[P]aste without register ov
 -- copy to clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank to clipboard' })
+vim.keymap.set('i', '<C-d>', '<Esc>yy<leader>pi', { desc = '[D]uplicate line' })
 require('lazy').setup({
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
