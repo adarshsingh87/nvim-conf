@@ -100,6 +100,10 @@ vim.g.maplocalleader = ' '
 vim.opt.number = true
 -- let cursor move one more step after eol
 vim.cmd 'set ve+=onemore'
+
+-- add command to toggle neotree explorer
+vim.cmd 'command E Neotree position=current toggle'
+vim.cmd 'command Ex Neotree position=current toggle'
 -- You can also add relative line numbers, for help with jumping.
 --  Experiment for yourself to see if you like it!
 -- vim.opt.relativenumber = true
@@ -483,6 +487,9 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
+          vim.cmd 'set foldenable'
+          vim.cmd 'set foldmethod=indent'
+          vim.cmd 'set foldlevel=99'
           -- NOTE: Remember that lua is a real programming language, and as such it is possible
           -- to define small helper and utility functions so you don't have to repeat yourself
           -- many times.
