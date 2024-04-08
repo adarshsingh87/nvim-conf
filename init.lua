@@ -681,6 +681,11 @@ require('lazy').setup({
         ['markdown'] = { { 'prettierd', 'prettier' } },
         ['markdown.mdx'] = { { 'prettierd', 'prettier' } },
       },
+      formatters = {
+        prettier = {
+          prepend_args = {"--print-width 120", "--use-tabs" , "--experimental-ternaries"}
+        }
+      }
     },
     config = function()
       require('conform.formatters.prettier').cwd = require('conform.util').root_file {
