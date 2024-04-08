@@ -683,7 +683,7 @@ require('lazy').setup({
       },
       formatters = {
         prettier = {
-          prepend_args = {"--print-width 120", "--use-tabs" , "--experimental-ternaries"}
+          prepend_args = {"--print-width 140", "--use-tabs" , "--experimental-ternaries"}
         }
       }
     },
