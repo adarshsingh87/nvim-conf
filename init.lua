@@ -653,11 +653,14 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    event = {"BufWritePre"},
+    cmd = {"ConformInfo"},
     opts = {
       notify_on_error = false,
       format_on_save = {
         timeout_ms = 500,
         lsp_fallback = true,
+        async = false
       },
       formatters_by_ft = {
         lua = { 'stylua' },
@@ -688,6 +691,14 @@ require('lazy').setup({
       }
     },
     config = function()
+      local conform = require("conform")
+      vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+      conform.format({
+        lsp_fallback = true,
+        async = false,
+        timeout_ms = 500,
+      })
+    end, { desc = "Format file or range (in visual mode)" })
       require('conform.formatters.prettier').cwd = require('conform.util').root_file {
         '.custom-config.json',
         -- These are the builtins
