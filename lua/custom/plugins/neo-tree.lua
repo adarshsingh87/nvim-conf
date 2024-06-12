@@ -18,9 +18,9 @@ return {
           hide_dotfiles = false,
           hide_gitignored = false
         }
-      }
+      },
 
+      vim.cmd 'Neotree position=current toggle'
     })
-    vim.cmd 'Neotree position=current toggle'
   end,
 }
