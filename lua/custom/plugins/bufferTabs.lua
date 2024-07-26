@@ -1,5 +1,5 @@
 return {
-    'adarshsingh87/BufferTabs.nvim',
+    'tomiis4/BufferTabs.nvim',
     dependencies = {
         'nvim-tree/nvim-web-devicons', -- optional
     },
