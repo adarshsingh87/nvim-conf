@@ -145,7 +145,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.cmd 'set modifiable'
 -- bg transparent
 function ColorMyPencils(color)
-  color = color or 'shades_of_purple'
+  color = color or 'eldritch'
   vim.cmd.colorscheme(color)
 
   vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
@@ -741,7 +741,7 @@ require('lazy').setup({
     priority = 10000, -- make sure to load this before all the other start plugins
     config = function()
       -- Load the colorscheme here
-      vim.cmd.colorscheme 'shades_of_purple'
+      -- vim.cmd.colorscheme 'shades_of_purple'
       ColorMyPencils()
       -- You can configure highlights by doing something like
       -- vim.cmd.hi 'Comment gui=none'
