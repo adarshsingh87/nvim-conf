@@ -7,7 +7,6 @@ return {
     config = function()
         require('buffertabs').setup({
             show_id = true,
-            show_all = true,
             display = 'column',
             horizontal='right',
             vertical = 'center'
