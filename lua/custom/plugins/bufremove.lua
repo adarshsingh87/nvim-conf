@@ -1,6 +1,6 @@
 return {
   'echasnovski/mini.bufremove',
-
+  lazy = true,
   keys = {
     {
       '<leader>bd',
