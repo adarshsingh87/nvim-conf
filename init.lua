@@ -13,7 +13,7 @@ vim.g.maplocalleader = ' '
 vim.opt.number = true
 -- let cursor move one more step after eol
 vim.cmd 'set ve+=onemore'
-
+vim.o.autoread = true
 -- add command to toggle neotree explorer
 vim.cmd 'command E Neotree position=current toggle'
 vim.cmd 'command Ex Neotree position=current toggle'
@@ -185,7 +185,7 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',    opts = {} },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following lua:
@@ -228,7 +228,7 @@ require('lazy').setup({
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VeryLazy', -- Sets the loading event to 'VeryLazy'
     config = function() -- This is the function that runs, AFTER loading
@@ -570,8 +570,8 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
-    event = {"BufWritePre"},
-    cmd = {"ConformInfo"},
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
     opts = {
       notify_on_error = false,
       format_on_save = {
@@ -603,19 +603,19 @@ require('lazy').setup({
       },
       formatters = {
         prettier = {
-          prepend_args = {"--print-width 140", "--use-tabs" , "--experimental-ternaries"}
+          prepend_args = { "--print-width 140", "--use-tabs", "--experimental-ternaries" }
         }
       }
     },
     config = function()
       local conform = require("conform")
       vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-      conform.format({
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 500,
-      })
-    end, { desc = "Format file or range (in visual mode)" })
+        conform.format({
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 500,
+        })
+      end, { desc = "Format file or range (in visual mode)" })
       require('conform.formatters.prettier').cwd = require('conform.util').root_file {
         '.custom-config.json',
         -- These are the builtins
@@ -738,7 +738,7 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
     'Rigellute/shades-of-purple.vim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false,     -- make sure we load this during startup if it is your main colorscheme
     priority = 10000, -- make sure to load this before all the other start plugins
     config = function()
       -- Load the colorscheme here
