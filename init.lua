@@ -14,9 +14,6 @@ vim.opt.number = true
 -- let cursor move one more step after eol
 vim.cmd 'set ve+=onemore'
 vim.o.autoread = true
--- add command to toggle neotree explorer
-vim.cmd 'command E Neotree position=current toggle'
-vim.cmd 'command Ex Neotree position=current toggle'
 -- add command to W for write as i don't know how to type
 vim.cmd 'command W w'
 -- You can also add relative line numbers, for help with jumping.
@@ -573,47 +570,34 @@ require('lazy').setup({
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     opts = {
+      format = {
+        timeout_ms = 10000,
+      },
       notify_on_error = false,
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 10000,
         lsp_fallback = true,
-        async = false
+        async = true
       },
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        javascript = { { 'prettierd', 'prettier' } },
-        ['javascriptreact'] = { { 'prettierd', 'prettier' } },
-        ['typescript'] = { { 'prettierd', 'prettier' } },
-        ['typescriptreact'] = { { 'prettierd', 'prettier' } },
-        ['vue'] = { { 'prettierd', 'prettier' } },
-        ['css'] = { { 'prettierd', 'prettier' } },
-        ['scss'] = { { 'prettierd', 'prettier' } },
-        ['less'] = { { 'prettierd', 'prettier' } },
-        ['html'] = { { 'prettierd', 'prettier' } },
-        ['json'] = { { 'prettierd', 'prettier' } },
-        ['jsonc'] = { { 'prettierd', 'prettier' } },
-        ['yaml'] = { { 'prettierd', 'prettier' } },
-        ['markdown'] = { { 'prettierd', 'prettier' } },
-        ['markdown.mdx'] = { { 'prettierd', 'prettier' } },
+        javascript = { "prettier" },
+        javascriptreact = { "prettier" },
+        css = { "prettier" },
+        html = { "prettier" },
+        astro = { "prettier" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        sh = { "shfmt" },
       },
-      formatters = {
-        prettier = {
-          prepend_args = { "--print-width 140", "--use-tabs", "--experimental-ternaries" }
-        }
-      }
     },
     config = function()
       local conform = require("conform")
       vim.keymap.set({ "n", "v" }, "<leader>mp", function()
         conform.format({
           lsp_fallback = true,
-          async = false,
-          timeout_ms = 500,
+          async = true,
+          timeout_ms = 10000,
         })
       end, { desc = "Format file or range (in visual mode)" })
       require('conform.formatters.prettier').cwd = require('conform.util').root_file {
