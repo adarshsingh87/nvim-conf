@@ -88,6 +88,8 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagn
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 -- Undo Tree
 vim.keymap.set('n', '<leader><F5>', vim.cmd.UndotreeToggle)
+
+vim.keymap.set({'n', 'v'}, '<leader>mp', vim.cmd.Neoformat, {desc = '[M]ake [P]retty'})
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -569,60 +571,6 @@ require('lazy').setup({
       }
     end,
   },
-
-  { -- Autoformat
-    'stevearc/conform.nvim',
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
-    opts = {
-      format = {
-        timeout_ms = 10000,
-      },
-      notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 10000,
-        lsp_fallback = true,
-        async = false
-      },
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
-        css = { "prettier" },
-        html = { "prettier" },
-        astro = { "prettier" },
-        typescript = { "prettier" },
-        typescriptreact = { "prettier" },
-        sh = { "shfmt" },
-      },
-    },
-    config = function()
-      local conform = require("conform")
-      vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-        conform.format({
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 10000,
-        })
-      end, { desc = "Format file or range (in visual mode)" })
-      require('conform.formatters.prettier').cwd = require('conform.util').root_file {
-        '.custom-config.json',
-        -- These are the builtins
-        '.prettierrc',
-        '.prettierrc.json',
-        '.prettierrc.yml',
-        '.prettierrc.yaml',
-        '.prettierrc.json5',
-        '.prettierrc.js',
-        '.prettierrc.cjs',
-        '.prettierrc.toml',
-        'prettier.config.js',
-        'prettier.config.cjs',
-        'package.json',
-      }
-    end,
-  },
-
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
