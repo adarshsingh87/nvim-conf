@@ -232,12 +232,17 @@ require('lazy').setup({
       require('which-key').setup()
 
       -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+      require('which-key').add {
+        { "<leader>c",  group = "[C]ode" },
+        { "<leader>c_", hidden = true },
+        { "<leader>d",  group = "[D]ocument" },
+        { "<leader>d_", hidden = true },
+        { "<leader>r",  group = "[R]ename" },
+        { "<leader>r_", hidden = true },
+        { "<leader>s",  group = "[S]earch" },
+        { "<leader>s_", hidden = true },
+        { "<leader>w",  group = "[W]orkspace" },
+        { "<leader>w_", hidden = true },
       }
     end,
   },
@@ -577,7 +582,7 @@ require('lazy').setup({
       format_on_save = {
         timeout_ms = 10000,
         lsp_fallback = true,
-        async = true
+        async = false
       },
       formatters_by_ft = {
         lua = { 'stylua' },
@@ -596,7 +601,7 @@ require('lazy').setup({
       vim.keymap.set({ "n", "v" }, "<leader>mp", function()
         conform.format({
           lsp_fallback = true,
-          async = true,
+          async = false,
           timeout_ms = 10000,
         })
       end, { desc = "Format file or range (in visual mode)" })
